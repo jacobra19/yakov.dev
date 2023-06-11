@@ -4,6 +4,8 @@
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
+const copyright = `Copyright © ${new Date().getFullYear()} Yakov Rakhamimov. Built with Docusaurus.`;
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'yakov.dev',
@@ -50,6 +52,18 @@ const config = {
           // Remove this to remove the "edit this page" links.
           // TODO: update this
           editUrl: 'https://github.com/jacobra19/yakov.dev/tree/master/blog/',
+          feedOptions: {
+            type: ['rss'],
+            copyright,
+            createFeedItems: async (params) => {
+              const { blogPosts, defaultCreateFeedItems, ...rest } = params;
+              return defaultCreateFeedItems({
+                // keep only the 10 most recent blog posts in the feed
+                blogPosts: blogPosts.filter((item, index) => index < 10),
+                ...rest,
+              });
+            },
+          },
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -127,7 +141,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Yakov Rakhamimov. Built with Docusaurus.`,
+        copyright,
       },
       prism: {
         theme: lightCodeTheme,
