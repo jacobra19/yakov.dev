@@ -1,10 +1,10 @@
 ---
 slug: my-plans-and-goals-for-2021
 title: My Plans & Goals For 2021
+description: What I plan to learn and the goals I want to achieve this year
 authors: yakov
 tags: [goals, plans, 2021]
 ---
-
 
 2020 was a busy and challenging year; due to covid and downsizing, I had lost my previous job, and after more than two years, I had to start looking for a new job while the unemployment rate was sky high, losing my job caught me unprepared. When I was looking for a new job, I soon realized that even though I was practicing pretty modern and cutting-edge technologies, I still had many knowledge gaps.
 While searching for a new job, I learned a lot and caught up a bit, but I'm still not where I would like to be.

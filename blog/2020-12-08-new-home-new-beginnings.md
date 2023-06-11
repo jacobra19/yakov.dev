@@ -1,6 +1,7 @@
 ---
 slug: new-home-new-beginnings
 title: New Home, New Beginnings
+description: First blog post at new website
 authors: yakov
 tags: [blog, personal, career, 2020]
 ---

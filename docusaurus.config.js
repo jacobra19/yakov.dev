@@ -7,7 +7,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'yakov.dev',
-//   tagline: 'Dinosaurs are cool',
+  tagline: 'Software Development blog by Yakov Rakhamimov',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -18,8 +18,8 @@ const config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-//   organizationName: 'facebook', // Usually your GitHub org/user name.
-//   projectName: 'docusaurus', // Usually your repo name.
+  //   organizationName: 'facebook', // Usually your GitHub org/user name.
+  //   projectName: 'docusaurus', // Usually your repo name.
 
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -48,8 +48,8 @@ const config = {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl: // TODO: update this
-            'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
+          // TODO: update this
+          editUrl: 'https://github.com/jacobra19/yakov.dev/tree/master/blog/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -62,7 +62,7 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
       // Replace with your project's social card // TODO: update this
-      image: 'img/docusaurus-social-card.jpg', 
+      //   image: 'img/docusaurus-social-card.jpg',
       navbar: {
         title: 'yakov.dev',
         logo: {
@@ -70,13 +70,13 @@ const config = {
           src: 'img/code-icon.png',
         },
         items: [
-            // {
-            //     type: 'docSidebar',
-            //     sidebarId: 'tutorialSidebar',
-            //     position: 'left',
-            //     label: 'Tutorial',
-            //   },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          // {
+          //     type: 'docSidebar',
+          //     sidebarId: 'tutorialSidebar',
+          //     position: 'left',
+          //     label: 'Tutorial',
+          //   },
+          { to: '/blog', label: 'Blog', position: 'left' },
           {
             href: 'https://github.com/facebook/docusaurus',
             label: 'GitHub',
@@ -91,8 +91,8 @@ const config = {
             title: 'Get in Touch',
             items: [
               {
-                  label: 'Twitter',
-                  href: 'https://twitter.com/yakovify/',
+                label: 'Twitter',
+                href: 'https://twitter.com/yakovify/',
               },
               {
                 label: 'LinkedIn',
@@ -110,7 +110,7 @@ const config = {
               {
                 label: 'dev.to',
                 href: 'https://dev.to/yakovify',
-              }
+              },
             ],
           },
           {

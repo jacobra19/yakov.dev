@@ -1,0 +1,15 @@
+class Yakov {
+  constructor() {
+    this.name = 'Yakov Rakhamimov';
+    this.role = 'Frontend Developer';
+    this.company = 'wix.com';
+  }
+
+  dev() {
+    ai.generate();
+  }
+}
+
+const yakov = new Yakov();
+
+yakov.dev();
