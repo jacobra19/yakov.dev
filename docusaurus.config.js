@@ -50,8 +50,7 @@ const config = {
           showReadingTime: true,
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          // TODO: update this
-          editUrl: 'https://github.com/jacobra19/yakov.dev/tree/master/blog/',
+          editUrl: 'https://github.com/jacobra19/yakov.dev/tree/master/',
           feedOptions: {
             type: ['rss'],
             copyright,
@@ -92,7 +91,7 @@ const config = {
           //   },
           { to: '/blog', label: 'Blog', position: 'left' },
           {
-            href: 'https://github.com/facebook/docusaurus',
+            href: 'https://github.com/jacobra19/yakov.dev',
             label: 'GitHub',
             position: 'right',
           },
@@ -136,7 +135,7 @@ const config = {
               },
               {
                 label: 'GitHub',
-                href: 'https://github.com/jacobra19',
+                href: 'https://github.com/jacobra19/yakov.dev',
               },
             ],
           },
