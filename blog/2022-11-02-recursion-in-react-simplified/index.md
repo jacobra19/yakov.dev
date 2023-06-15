@@ -15,6 +15,7 @@ Recursion is a computer science practice where a function calls itself until it 
 I Used to struggle with recursive code; it was hard to grasp the notion of something calling (invoking) itself, and it felt too abstract. Usually, recursion is demonstrated with the Fibonacci sequence, binary search tree, or some other theoretical example, which could be tough to wrap your head around. I wondered where such practice would be helpful UI-wise. For example, a comment section where each comment can have a sub-comment which will have a sub-comment of its own, which will have a sub-comment of its own, well, you got the idea.
 
 :::info
+
 First, let's write our comment component without recursion: the author name the comment's content.
 :::
 
