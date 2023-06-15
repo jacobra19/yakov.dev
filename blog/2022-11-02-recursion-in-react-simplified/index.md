@@ -8,7 +8,7 @@ image: photo-1542355554783-b612ff00383c.jpg
 hide_table_of_contents: false
 ---
 
-![Endless Stairs](./photo-1542355554783-b612ff00383c.avif)
+![Endless Stairs](./photo-1542355554783-b612ff00383c.jpg)
 
 Recursion is a computer science practice where a function calls itself until it reaches an exit condition. Sound pretty simple, right?
 
