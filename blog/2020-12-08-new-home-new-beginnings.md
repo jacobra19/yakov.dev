@@ -4,6 +4,7 @@ title: New Home, New Beginnings
 description: First blog post at new website
 authors: yakov
 tags: [blog, personal, career, 2020]
+keywords: [blog, personal, career, 2020]
 ---
 
 Hi \*,

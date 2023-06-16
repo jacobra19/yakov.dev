@@ -4,6 +4,7 @@ title: Recursion in React simplified
 description: Understand how recursion works with examples in React
 authors: yakov
 tags: [blog, react, recursion, 2022]
+keywords: [blog, react, recursion, 2022]
 image: photo-1542355554783-b612ff00383c.jpg
 hide_table_of_contents: false
 ---
