@@ -156,6 +156,9 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
+  clientModules: [
+    require.resolve('./client-modules/vercel-analytics.js'),
+  ],
 };
 
 module.exports = config;
