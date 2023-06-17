@@ -1,7 +1,7 @@
 ---
 slug: bookmarklets-bookmarks-on-steroids
 title: Bookmarklets - Bookmarks on steroids
-description: How to supercharge your bookmarks with javascript
+description: Discover how JavaScript can supercharge your browser bookmarks.
 authors: [yakov]
 tags: [browser, javascript, bookmark, bookmarklet, 2023]
 keywords: [browser, javascript, bookmark, bookmarklet, 2023]
@@ -18,63 +18,61 @@ Photo by <a href="https://unsplash.com/@olia?utm_source=unsplash&utm_medium=refe
 
 ![image](olia-gozha-J4kK8b9Fgj8-unsplash.jpg)
 
-> ### tl;dr: add javascript code as the url value of a bookmark to execute it when you click on the bookmark.
+> ### tl;dr: Bookmarklets are bookmarks charged with the power of JavaScript. They let you execute JavaScript code by clicking on a bookmark.
 
-A while back I discovered a neat trick that you can do with bookmarks in the browser, instead of inserting a url, just add some javascript.
-wait, what?
-when creating a new bookmark in your browser, you can add a url, but you can also add some javascript code, and when you click on the bookmark, the code will be executed.
-this is a very powerful feature, and I use it all the time.
-Basically, any javascript code that you can run in the console, you can run in a bookmark.
+Ever found yourself repeatedly copying a particular text, navigating to a specific webpage, 
+or performing some other routine task while browsing? Bookmarklets are a neat trick that 
+can help you automate these mundane tasks. Instead of using a URL, these supercharged 
+bookmarks leverage JavaScript to perform complex tasks at the click of a button.
 
-So, what can we do with this?
-Let's see some examples:
-
-![example](./example1.png)
-
-## Copy to clip board a string that you use often
-
-```javascript
-navigator.clipboard.writeText('ce34839b-5eca-4ab5-86ac-02cc8ba76c8e');
-```
-
-we can use this to copy to the clipboard a string that we use often, like a uuid, or a url, or anything else.
-seems pretty basic, but it's very useful.
-
-:::note
-Don't forget to add the `javascript:` prefix to the code, otherwise it won't work.
+:::warning
+Before we proceed, it's important to understand the security implications of bookmarklets. 
+They involve running JavaScript code directly in your browser. Be wary of using bookmarklets 
+from sources you don't trust, as they can potentially expose your browser and data to security risks.
 :::
 
-## Fetch data from an api
+## How do Bookmarklets work?
+
+Creating a bookmarklet is similar to creating a bookmark. The difference is that instead of inserting a 
+URL, you add JavaScript code. Whenever you click on the bookmarklet, this JavaScript code is executed. 
+It's a powerful feature that can automate a plethora of tasks that you perform in your browser. 
+Any JavaScript code that you can run in the browser console, you can run in a bookmarklet.
+
+:::note
+Make sure to prefix your JavaScript code with `javascript:` when creating a bookmarklet. 
+This tells the browser that it's not a standard URL.
+:::
+
+### Copy a frequently used string to the clipboard
+
+```javascript
+javascript:navigator.clipboard.writeText('ce34839b-5eca-4ab5-86ac-02cc8ba76c8e');
+```
+
+### Fetch data from an api
 
 we can also use this to fetch data from an api, and display it in the console.
 
 ```javascript
-fetch('https://jsonplaceholder.typicode.com/todos/1')
-  .then((response) => response.json())
-  .then((json) => console.log(json));
+javascript:fetch('https://jsonplaceholder.typicode.com/todos/1').then((response) => response.json()).then((json) => console.log(json));
 ```
 
-## Go to a random wikipedia page
-
-Want to read an interesting wikipedia article, but don't know which one to choose?
-
-```javascript
-window.open(
-  'https://en.wikipedia.org/wiki/Special:RandomInCategory/Good_articles',
-  '_blank'
-);
-```
-
-## What's next?
-
-As you can see, the possibilities are endless, and you can use this to automate a lot of things that you do often.
-You can check out these repos for more ideas and inspiration:
-
-[https://github.com/Krazete/bookmarklets](https://github.com/Krazete/bookmarklets)
-
-[https://github.com/marcobiedermann/awesome-bookmarklets](https://github.com/marcobiedermann/awesome-bookmarklets)
-
-:::warning
-Be aware of the security implications of running unknown javascript code from a bookmark,
-and don't run code that you don't trust.
+:::info
+As you can see, the code is one-liner. This is because bookmarklets don't support multi-line code.
+Take in mind that you can use the `;` to separate multiple statements.
 :::
+
+### Expanding Your Bookmarklet Library
+The power of bookmarklets is limited only by your imagination. 
+You can automate numerous tasks that you frequently perform on your browser. 
+For more ideas and inspiration, check out these repositories:
+
+https://github.com/Krazete/bookmarklets
+
+https://github.com/marcobiedermann/awesome-bookmarklets
+
+## Conclusion
+Bookmarklets offer a way to harness the power of JavaScript to automate your browser 
+tasks and enhance your productivity. They're easy to create and can be as simple or 
+complex as you need them to be. But, like all powerful tools, they need to be used with caution. 
+So, remember to use or create bookmarklets from trusted sources to keep your browsing safe.
