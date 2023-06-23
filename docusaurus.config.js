@@ -90,6 +90,8 @@ const config = {
         logo: {
           alt: 'My Site Logo',
           src: 'img/code-icon.png',
+          width: 26,
+          height: 26,
         },
         items: [
           // {
@@ -156,9 +158,7 @@ const config = {
         darkTheme: darkCodeTheme,
       },
     }),
-  clientModules: [
-    require.resolve('./client-modules/vercel-analytics.js'),
-  ],
+  clientModules: [require.resolve('./client-modules/vercel-analytics.js')],
 };
 
 module.exports = config;
