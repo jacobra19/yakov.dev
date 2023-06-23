@@ -90,8 +90,6 @@ const config = {
         logo: {
           alt: 'My Site Logo',
           src: 'img/code-icon.png',
-          width: 26,
-          height: 26,
         },
         items: [
           // {
