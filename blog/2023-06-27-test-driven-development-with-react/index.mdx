@@ -5,7 +5,7 @@ description: Test Driven Development explained with React, Jest and Testing Libr
 authors: [yakov]
 tags: [tdd,testing,testing library, jest, tdd, 2023]
 keywords: [tdd,testing,testing library, jest, tdd, 2023]
-image: matt-seymour-unsplash.jpg
+image: https://images.pexels.com/photos/8824203/pexels-photo-8824203.jpeg
 hide_table_of_contents: false
 draft: true
 ---
@@ -13,7 +13,91 @@ draft: true
 import ImageCredit from '@site/src/components/image-credit'
 
 <ImageCredit>
-Photo by <a href="https://unsplash.com/@mattseymour?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Matt Seymour</a> on <a href="https://unsplash.com/photos/8X2siC3gSj4?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+Photo by <a href="https://www.pexels.com/@jan-van-der-wolf-11680885/">Jan van der Wolf</a> from <a href="https://www.pexels.com/photo/blue-and-yellow-road-sign-8824203/">Pexels</a>
 </ImageCredit>
 
-![image](matt-seymour-unsplash.jpg)
+![image](pexels-photo-8824203.jpeg)
+
+## what is tdd
+
+> Test-driven development (TDD) is a software development process relying on software requirements being converted 
+to test cases before software is fully developed, and tracking all software development by repeatedly testing the 
+software against all test cases. This is as opposed to software being developed first and test cases created later.
+
+From [wikipedia](https://en.wikipedia.org/wiki/Test-driven_development#Test-driven_development_cycle)
+
+So what does it actually means? 
+instead of writing the code first and then adding tests to validate the added behavior, we first write the test and only then implement the new behavior.
+
+Basicly it should look something like this:
+### tdd diagram
+![test driven development diagram](tdd-diagram.png)
+
+## why?
+
+Why not just do it the other way around? TDD requirs the developer to change the way he aproaches the problem, when starting to practice it, it might seem unintuitive and the concept might take some time to grasp.
+When implementation comes first, we might be biased when writing the tests, since we already know the behavior is implement, and we might even saw it in action.
+When starting with a failing test we know for sure that it's not yet opperational, only when the test switches to green we know we reach our goal.
+
+{/* add more reasons here */}
+## how?
+
+In theory is sound pretty nice and simple, lets see how we can actually do it.
+We'll use react.js for the examples but the concepts are transsitible to all other frameworks and libraries.
+Our test runner will be [Jest](https://jestjs.io/) and the rendering will be done by [Testing Library](https://testing-library.com/docs/react-testing-library/intro)
+For this demo i chose to go with [Create React App](https://create-react-app.dev/) since it has the least overhead for starting with testing (ships with both jest and testing library),
+for a real world app i would probably go with vite or next.js, depends on the ues case.
+
+### installation
+
+first of all let's get started with this command
+
+
+```bash
+npx create-react-app my-app --template typescript
+```
+
+once it's finished we can already run the test that is aleady exist in the project
+
+### run the tests
+
+let's run the test command `npm run test` as you might notice this is running with the watch flag by default, so each file change in the src directory will trigger a re-run of the test command.
+
+### new task requirement
+
+let's assume that we were assigned to develop a simple counter display, with "Increment", "Decrement" and "Reset" functionality
+We even got a prototype video of the feature:
+![demo](output.gif)
+
+let's break that down to smaller blocks of logic:
+
+* Increment
+    * Button with "Increment" label should be displayd
+    * Click on button should increment count value by once
+* Decrement
+    * Button with "Decrement" label should be displayd
+    * Click on button should decrement count value by once
+* Reset
+    * Button with "Reset" label should be displayd
+    * Click on button should set count value to 0
+* Counter
+    * should be initiated with 0 as value
+
+Basicly we can use this as a referance to out tdd cycles, if we take increment click functionality and cast it on the [digaram](#tdd-diagram) we saw before it should look something like this:
+![test driven development diagram](tdd-diagram-increment.png)
+
+
+
+
+## FAQ
+
+Q:  
+A:
+
+refs:
+
+https://docs.google.com/presentation/d/1PEoyCYUAw7vaSkTzRG7DfU_81T2j-I1OJ21PxsaVYH4/edit?pli=1#slide=id.g1fe029b5a1a_0_32
+
+https://create-react-app.dev/docs/getting-started#creating-an-app
+
+https://en.wikipedia.org/wiki/Test-driven_development#Test-driven_development_cycle
