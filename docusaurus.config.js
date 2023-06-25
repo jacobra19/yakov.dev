@@ -155,6 +155,12 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      metadata: [
+        {
+          'http-equiv': 'Content-Security-Policy',
+          "content": "connect-src 'self' vitals.vercel-insights.com",
+        },
+      ],
     }),
   clientModules: [require.resolve('./client-modules/vercel-analytics.js')],
 };
