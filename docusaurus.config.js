@@ -158,7 +158,7 @@ const config = {
       metadata: [
         {
           'http-equiv': 'Content-Security-Policy',
-          "content": "connect-src 'self' vitals.vercel-insights.com",
+          "content": "connect-src 'self' https://*.vercel-insights.com"
         },
       ],
     }),
