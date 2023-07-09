@@ -36,7 +36,7 @@ Basicly it should look something like this:
 ## why?
 
 Why not just do it the other way around? TDD requirs the developer to change the way he aproaches the problem, when starting to practice it, it might seem unintuitive and the concept might take some time to grasp.
-When implementation comes first, we might be biased when writing the tests, since we already know the behavior is implement, and we might even saw it in action.
+When implementation comes first, we might be biased when writing the tests, since we already know the behavior works as expected, and we might even saw it in action.
 When starting with a failing test we know for sure that it's not yet opperational, only when the test switches to green we know we reach our goal.
 
 {/* add more reasons here */}
@@ -86,7 +86,51 @@ let's break that down to smaller blocks of logic:
 Basicly we can use this as a referance to out tdd cycles, if we take increment click functionality and cast it on the [digaram](#tdd-diagram) we saw before it should look something like this:
 ![test driven development diagram](tdd-diagram-increment.png)
 
+### First test - Increment button should exists
 
+the first test should check if the button is rendered in document, using Jest's global `describe`, `test` and `expect` functions,
+testing-library's `render` function that renders (duh) the elements in the dom (well, not an actual dom, but that's a topic for another article),
+and [`screen`] object which represent the document object in which the `render` function rendered info and deeper understand of this, i would suggest reach the official docs of [jest] and [testing-library]
+
+
+```jsx title="src/App.test.tsx" 
+import { render, screen } from '@testing-library/react';
+import App from './App';
+
+describe('when app is rendered', () => {
+  render(<App />);
+
+  test('should display "increment" button', () => {
+    expect(screen.getByTestId('increment-button')).toBeInTheDocument();
+  });
+});
+```
+this will be the output for test:
+
+![failed-test](failed-test-001.png)
+
+since this we didn't implement the button in the code, the test is failing, now let's add the button:
+
+```jsx title="src/App.tsx" 
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
+
+function App() {
+  const [count, setCount] = React.useState(0);
+  return (
+    <div className='App'>
+        <button data-testid={'increment-button'}>
+            Increment
+        </button>
+    </div>
+  );
+}
+
+export default App;
+```
+
+![passed-test](passed-test-001.png)
 
 
 ## FAQ
