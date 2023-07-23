@@ -8,6 +8,7 @@ keywords: [tdd,testing,testing library, jest, tdd, 2023]
 image: https://images.pexels.com/photos/8824203/pexels-photo-8824203.jpeg
 hide_table_of_contents: false
 draft: true
+date: 2023-08-25
 ---
 
 import ImageCredit from '@site/src/components/image-credit'
@@ -18,22 +19,22 @@ Photo by <a href="https://www.pexels.com/@jan-van-der-wolf-11680885/">Jan van de
 
 ![image](pexels-photo-8824203.jpeg)
 
-## what is tdd
+## What is Test-driven development?
 
 > Test-driven development (TDD) is a software development process relying on software requirements being converted 
 to test cases before software is fully developed, and tracking all software development by repeatedly testing the 
 software against all test cases. This is as opposed to software being developed first and test cases created later.
 
-From [wikipedia](https://en.wikipedia.org/wiki/Test-driven_development#Test-driven_development_cycle)
+*From [wikipedia](https://en.wikipedia.org/wiki/Test-driven_development#Test-driven_development_cycle)*
 
 So what does it actually means? 
 instead of writing the code first and then adding tests to validate the added behavior, we first write the test and only then implement the new behavior.
 
 Basicly it should look something like this:
 ### tdd diagram
-![test driven development diagram](tdd-diagram.png)
+![test driven development diagram](tdd-diagram-increment.png)
 
-## why?
+## What's in it for me?
 
 Why not just do it the other way around? TDD requirs the developer to change the way he aproaches the problem, when starting to practice it, it might seem unintuitive and the concept might take some time to grasp.
 When implementation comes first, we might be biased when writing the tests, since we already know the behavior works as expected, and we might even saw it in action.
@@ -86,7 +87,22 @@ let's break that down to smaller blocks of logic:
 Basicly we can use this as a referance to out tdd cycles, if we take increment click functionality and cast it on the [digaram](#tdd-diagram) we saw before it should look something like this:
 ![test driven development diagram](tdd-diagram-increment.png)
 
-### First test - Increment button should exists
+### 1st Test - Increment button should exists
+
+First of all let's clear the exisiting `App.jsx` file so it will return an empty `div` element:
+    
+```jsx title="src/App.tsx" 
+import React from 'react';
+import './App.css';
+
+function App() {
+  return (
+    <div className='App'/>
+  );
+}
+
+export default App;
+```
 
 the first test should check if the button is rendered in document, using Jest's global `describe`, `test` and `expect` functions,
 testing-library's `render` function that renders (duh) the elements in the dom (well, not an actual dom, but that's a topic for another article),
@@ -109,15 +125,17 @@ this will be the output for test:
 
 ![failed-test](failed-test-001.png)
 
+let's go over what happend here, since the button element weren't implemented yet, `getByTestId` function couldn't find it in the dom, 
+you should notice that even if a button would be rendered it still needs to have a `data-testid` atttibute with with the correct value so `getByTestId` can find the excact element we need.
+
 since this we didn't implement the button in the code, the test is failing, now let's add the button:
 
-```jsx title="src/App.tsx" 
+```jsx title="src/App.tsx" {8-10}
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 
 function App() {
-  const [count, setCount] = React.useState(0);
   return (
     <div className='App'>
         <button data-testid={'increment-button'}>
@@ -130,8 +148,56 @@ function App() {
 export default App;
 ```
 
+now the test would pass, as the target element is found
+
 ![passed-test](passed-test-001.png)
 
+### 2nd Test - Click on button should increment counter
+
+the next step in out test flow should be "when user click on increment, counter should be incremented by one", but before we do that, we should test that the default count value is 0.
+
+so lets add the following test:
+```jsx title="src/App.test.tsx" {11-14} 
+import { render, screen } from '@testing-library/react';
+import App from './App';
+
+describe('when app is rendered', () => {
+  test('should display "increment" button', () => {
+    render(<App />);
+    expect(screen.getByTestId('increment-button')).toBeInTheDocument();
+  });
+
+  test('should initiate counter with 0', () => {
+    render(<App />);
+    expect(screen.getByTestId('counter')).toBeInTheDocument();
+  });
+});
+```
+
+after this second test will fail, we can add this logic:
+```jsx title="src/App.tsx" {5,9}
+import React from 'react';
+import './App.css';
+
+function App() {
+  const [count] = React.useState(0);
+
+  return (
+    <div className='App'>
+      <h1 data-testid={'counter'}>Counter: {count}</h1>
+      <button data-testid={'increment-button'}>Increment</button>
+    </div>
+  );
+}
+
+export default App;
+```
+
+now the test should pass.
+
+:::note
+bdd comment here
+:::
 
 ## FAQ
 
@@ -147,6 +213,6 @@ https://create-react-app.dev/docs/getting-started#creating-an-app
 https://en.wikipedia.org/wiki/Test-driven_development#Test-driven_development_cycle
 
 todos:
-[] link to FAQ
-[] change color in first diagram
-[] optional: make gif shorter
+* link to FAQ
+* change color in first diagram
+* optional: make gif shorter
