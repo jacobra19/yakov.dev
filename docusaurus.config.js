@@ -39,17 +39,9 @@ const config = {
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-        // docs: { // TODO: consider changing this to projects
-        //   sidebarPath: require.resolve('./sidebars.js'),
-        //   // Please change this to your repo.
-        //   // Remove this to remove the "edit this page" links.
-        //   editUrl:
-        //     'https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/',
-        // },
         blog: {
+          routeBasePath: '/',
           showReadingTime: true,
-          // Please change this to your repo.
-          // Remove this to remove the "edit this page" links.
           editUrl: 'https://github.com/jacobra19/yakov.dev/tree/master/',
           feedOptions: {
             type: ['rss'],
@@ -92,13 +84,6 @@ const config = {
           src: 'img/code-icon.png',
         },
         items: [
-          // {
-          //     type: 'docSidebar',
-          //     sidebarId: 'tutorialSidebar',
-          //     position: 'left',
-          //     label: 'Tutorial',
-          //   },
-          { to: '/blog', label: 'Blog', position: 'left' },
           {
             href: 'https://github.com/jacobra19/yakov.dev',
             label: 'GitHub',
@@ -138,10 +123,6 @@ const config = {
           {
             title: 'More',
             items: [
-              {
-                label: 'Blog',
-                to: '/blog',
-              },
               {
                 label: 'GitHub',
                 href: 'https://github.com/jacobra19/yakov.dev',
