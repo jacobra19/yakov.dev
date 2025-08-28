@@ -55,6 +55,9 @@ const config = {
               });
             },
           },
+          // Enable Open Graph meta tags for blog posts
+          blogTitle: 'yakov.dev',
+          blogDescription: 'Software Development blog by Yakov Rakhamimov',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
