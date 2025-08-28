@@ -1,14 +1,17 @@
 ---
 slug: tdd-with-react
-title: Test Driven Development with React
-description: Test Driven Development explained with React, Vitest and Testing Library examples.
+title: Test-Driven Development (TDD) with React: Complete Guide with Examples
+description: Learn Test-Driven Development with React using Vitest and Testing Library. Step-by-step guide with real examples, best practices, and common pitfalls.
 authors: [yakov]
 tags: [blog, react, testing, tdd, vitest, javascript, typescript, testing-library]
-keywords: [tdd, react, testing, vitest, javascript, typescript, testing-library]
+keywords: [tdd, react, testing, vitest, javascript, typescript, testing-library, test-driven-development, react-testing, vitest-tutorial]
 image: https://images.pexels.com/photos/8824203/pexels-photo-8824203.jpeg
 hide_table_of_contents: false
 draft: false
 date: 2025-08-28
+og_title: "Test-Driven Development (TDD) with React: Complete Guide"
+og_description: "Master TDD with React using Vitest and Testing Library. Step-by-step tutorial with real examples."
+twitter_card: summary_large_image
 ---
 
 import ImageCredit from '@site/src/components/image-credit'
@@ -18,6 +21,13 @@ Photo by <a href="https://www.pexels.com/@jan-van-der-wolf-11680885/">Jan van de
 </ImageCredit>
 
 ![image](pexels-photo-8824203.jpeg)
+
+## Prerequisites
+Before diving into TDD with React, you should be familiar with:
+- Basic React concepts (components, state, props)
+- JavaScript/TypeScript fundamentals
+- Command line basics
+- Basic understanding of testing concepts
 
 ## What is Test-driven development?
 
@@ -31,13 +41,14 @@ So what does it actually mean?
 Instead of writing the code first and then adding tests to validate the added behavior, we first write the test and only then implement the new behavior.
 
 Basically it should look something like this:
+
 ### TDD Diagram
-![test driven development diagram](tdd-diagram-increment.png)
+![test driven development diagram showing red-green-refactor cycle](tdd-diagram-increment.png)
 
 ### Why not just do it the other way around?
 
 TDD requires the developer to change the way they approach the problem. When starting to practice it, it might seem unintuitive and the concept might take some time to grasp.
-When implementation comes first, we might be biased when writing the tests, since we already know the behavior works as expected, and we might have even seen it in action.
+When implementation comes first, we're biased - TDD avoids this by starting with a failing test.
 When starting with a failing test we know for sure that it's not yet operational, only when the test switches to green do we know we've reached our goal.
 
 ## How?
@@ -45,8 +56,7 @@ When starting with a failing test we know for sure that it's not yet operational
 In theory it sounds pretty nice and simple, let's see how we can actually do it.
 We'll use React.js for the examples but the concepts are transferable to all other frameworks and libraries.
 Our test runner will be [Vitest](https://vitest.dev/) and the rendering will be done by [Testing Library](https://testing-library.com/docs/react-testing-library/intro)
-For this demo I chose to go with [Vite](https://vitejs.dev/) since it's fast, modern, and has great testing support with Vitest integration,
-which is the natural choice for modern React applications.
+I chose Vite for this demo because it's fast, modern, and integrates smoothly with Vitest.
 
 ### Installation & Setup
 
@@ -107,7 +117,7 @@ describe('AppComponent', () => {
 Let's run the test command `npm run test`. Vitest runs in watch mode by default, so each file change in the src directory will trigger a re-run of the test command.
 
 You should see something like this:
-![vitest-initial-run](dummy-spec.png)
+![vitest initial test run showing passing test](dummy-spec.png)
 
 Awesome, everything is working as expected!
 We are ready to start our TDD journey. 🥳
@@ -116,19 +126,19 @@ We are ready to start our TDD journey. 🥳
 
 Let's assume that we were assigned to develop a simple counter display, with "Increment", "Decrement" and "Reset" functionality.
 We even got a prototype video of the feature:
-![demo](output.gif)
+![counter app demo showing increment decrement and reset functionality](output.gif)
 
 Let's break that down into smaller blocks of logic:
 
 * Increment
     * Button with "Increment" label should be displayed
-    * Click on button should increment count value by one
+    * Clicking the button should increment the count by one
 * Decrement
     * Button with "Decrement" label should be displayed
-    * Click on button should decrement count value by one
+    * Clicking the button should decrement the count by one
 * Reset
     * Button with "Reset" label should be displayed
-    * Click on button should set count value to 0
+    * Clicking the button should set the count to 0
 * Counter
     * Should be initialized with 0 as value
 
@@ -166,15 +176,13 @@ describe('when app is rendered', () => {
   test('should display "increment" button', () => {
     render(<App />);
 
-    const incrementButton = screen.getByText('Increment');
-
-    expect(incrementButton).toBeDefined()
+    expect(screen.getByText('Increment')).toBeDefined()
   });
 });
 ```
 This will be the output for the test:
 
-![failed-test](failed-test-001.png)
+![failed test showing increment button not found error](failed-test-001.png)
 
 Let's go over what happened here. Since the button element wasn't implemented yet, `getByText` function couldn't find it in the DOM.
 
@@ -200,7 +208,7 @@ export default App;
 
 Now the test would pass, as the target element is found
 
-![passed-test](passed-test-001.png)
+![passed test showing increment button successfully found](passed-test-001.png)
 
 ### 2nd Test - Click on Button Should Increment Counter
 
@@ -220,9 +228,7 @@ describe('when app is rendered', () => {
   test('should display "increment" button', () => {
     render(<App />);
 
-    const incrementButton = screen.getByText('Increment');
-
-    expect(incrementButton).toBeDefined()
+    expect(screen.getByText('Increment')).toBeDefined()
   });
 
   test('should initiate counter with 0', () => {
@@ -273,9 +279,7 @@ describe('when app is rendered', () => {
   test('should display "increment" button', () => {
     render(<App />);
 
-    const incrementButton = screen.getByText('Increment');
-
-    expect(incrementButton).toBeDefined()
+    expect(screen.getByText('Increment')).toBeDefined()
   });
 
   test('should initiate counter with 0', () => {
@@ -340,6 +344,9 @@ A: Yes! You can start applying TDD to new features or when refactoring existing 
 **Q: What about testing UI components? Isn't that brittle?**  
 A: When testing UI components, focus on user behavior rather than implementation details. Use semantic queries (like `getByRole`, `getByLabelText`) instead of brittle selectors, and test what the user would actually do.
 
+**Q: When is TDD not the most efficient approach?**  
+A: TDD works best for well-defined, stable requirements. It may not be ideal for rapid prototyping, exploratory programming, or when requirements are constantly changing. In these cases, you might start with a prototype first, then add tests as the feature stabilizes. TDD also requires more upfront investment, so for very small scripts or one-off utilities, the overhead might not be worth it.
+
 ## Conclusion
 
 Test-Driven Development is more than just a testing strategy - it's a design methodology that helps you build more reliable, maintainable software. By writing tests first, you're forced to think about your API design, error cases, and user requirements before diving into implementation.
@@ -349,6 +356,11 @@ The counter example we built demonstrates the core TDD cycle: Red (write a faili
 While TDD may feel slower initially, the benefits compound over time. Once a good infrastructure is in place, you'll spend less time debugging, have more confidence when refactoring, and create better-designed code. The tests serve as both specification and safety net, making your codebase more robust and maintainable.
 
 Start small with TDD—pick one new feature or bug fix and apply the Red-Green-Refactor cycle. As you become more comfortable with the process, you'll find that TDD becomes a natural part of your development workflow.
+
+## Ready to Start TDD?
+Try implementing the decrement and reset functionality using the same TDD approach we covered. Remember: Red → Green → Refactor!
+
+The key to mastering TDD is practice. Start with small features and gradually work your way up to more complex functionality. The investment in writing tests first pays off with more reliable, maintainable code.
 
 ## References
 
