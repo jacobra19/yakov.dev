@@ -40,6 +40,10 @@ const config = {
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
+        gtag: {
+          trackingID: 'G-44N96DYZYC',
+          anonymizeIP: true,
+        },
         blog: {
           routeBasePath: '/',
           showReadingTime: true,
