@@ -1,8 +1,9 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const {themes} = require('prism-react-renderer');
+const lightCodeTheme = themes.github;
+const darkCodeTheme = themes.dracula;
 
 const copyright = `Copyright © ${new Date().getFullYear()} Yakov Rakhamimov. Built with Docusaurus.`;
 
@@ -39,6 +40,10 @@ const config = {
       'classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
+        gtag: {
+          trackingID: 'G-44N96DYZYC',
+          anonymizeIP: true,
+        },
         blog: {
           routeBasePath: '/',
           showReadingTime: true,
@@ -65,15 +70,9 @@ const config = {
       }),
     ],
   ],
-  plugins: [
-    [
-      '@docusaurus/plugin-google-gtag',
-      {
-        trackingID: 'G-44N96DYZYC',
-        anonymizeIP: true,
-      },
-    ],
-  ],
+  // Note: Google Analytics (gtag) is configured via the classic preset above.
+  // Avoid adding '@docusaurus/plugin-google-gtag' here to prevent duplicate instances.
+  plugins: [],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
