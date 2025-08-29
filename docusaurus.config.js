@@ -70,15 +70,9 @@ const config = {
       }),
     ],
   ],
-  plugins: [
-    [
-      '@docusaurus/plugin-google-gtag',
-      {
-        trackingID: 'G-44N96DYZYC',
-        anonymizeIP: true,
-      },
-    ],
-  ],
+  // Note: Google Analytics (gtag) is configured via the classic preset above.
+  // Avoid adding '@docusaurus/plugin-google-gtag' here to prevent duplicate instances.
+  plugins: [],
 
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
