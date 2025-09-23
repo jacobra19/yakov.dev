@@ -1,0 +1,92 @@
+---
+slug: the-renaissance-of-git-worktrees
+title: The Renaissance of Git Worktrees 
+description: Git worktrees let you work on multiple branches simultaneously in separate directories. AI agents make this powerful but complex feature finally practical for everyday development.
+authors: yakov
+tags: [git, development, workflow, productivity]
+keywords: [git worktree, git branches, parallel development, AI coding, development workflow]
+image: https://images.pexels.com/photos/446618/pexels-photo-446618.jpeg
+---
+
+import ImageCredit from '@site/src/components/image-credit'
+
+<ImageCredit>
+Photo by <a href="https://www.pexels.com/@jahoo/">Jahoo Clouseau</a> from <a href="https://www.pexels.com/photo/worm-s-eye-view-of-church-446618/">Pexels</a>
+</ImageCredit>
+
+![image](pexels-jahoo-446618.jpg)
+
+## What are Git Worktrees?
+
+Git worktrees are a feature that allows you to have multiple working directories from the same repository, each potentially on different branches. Think of it as having multiple "copies" of your project that all share the same Git history but can work on different branches simultaneously.
+
+When you initialize a Git repository, you get your main worktree (the directory where you ran `git init` or `git clone`). From there, you can create additional worktrees that are linked to the same repository but exist in separate directories.
+
+Here are the essential commands you'll need:
+
+```bash
+# Create a new worktree for a specific branch
+git worktree add ../my-feature feature-branch
+
+# List all worktrees
+git worktree list
+
+# Remove a worktree when you're done with it
+git worktree remove ../my-feature
+```
+
+The relationship is simple: your original repository remains the "main" worktree, and any additional worktrees are linked to it. They all share the same `.git` directory, which means commits, branches, and history are synchronized across all worktrees.
+
+## How is it different from regular branches?
+
+With regular Git branches, you're confined to working in a single directory. When you want to switch between branches, you need to `git checkout` or `git switch`, which means saving or stashing your current work, switching the entire working directory to the new branch, and then resuming work. This context switching can be disruptive, especially when you're juggling multiple tasks or need to quickly reference code from another branch.
+
+Git worktrees eliminate this friction by giving each branch its own physical directory. You can have your main branch running in one terminal tab, a feature branch in another, and a hotfix branch in a third - all simultaneously. 
+
+Each directory maintains its own state: uncommitted changes, running processes, and even different dependency installations if needed. This separation makes multitasking not just possible, but actually pleasant.
+
+## Why now (a decade after release)?
+
+Until a few weeks ago, I wasn't aware this command even existed in Git. I had stumbled upon my own "hack" - cloning the same repository multiple times with different branches to work on several tasks simultaneously. When I shared this approach with a colleague, he said, "Oh, you should check out worktrees. It might be a better fit for this use case."
+
+That's when I discovered that Git has had this feature since 2015, but it somehow flew under my (and most developers) radar. The timing of my discovery wasn't coincidental though. The rise of AI coding assistants like Claude Code and Cursor has fundamentally changed how we approach development work.
+
+Here's where it gets interesting: AI agents excel at handling isolated, well-defined tasks. When you point Claude Code at a specific worktree with a clear objective, it can work autonomously without the mental overhead of context switching that plagues human developers. I found myself setting up different worktrees for different types of tasks:
+
+- One worktree for the main feature branch where I need more focus and precision
+- Another for some bugfix needed to be done quickly
+- A third for refactoring some legacy code
+
+## We are the bottleneck
+
+Initially, I thought I'd discovered an unbeatable hack - I could work on multiple unrelated tasks simultaneously, just orchestrating everything from above. My backlog would be cleaned out in a day!
+
+But after about a week, I realized that while this approach works well for simple tasks, in most cases the real bottleneck is me as the code reviewer. When dealing with production code, you still need to ensure that every line entering your codebase is known and understood. Even though much of it is AI-generated, you're still responsible for it, which sometimes makes you review it even more strictly than before.
+
+The human element becomes the limiting factor. You can spin up as many worktrees as you want, assign AI agents to each one, and watch them make impressive progress - but eventually, all their work needs to flow through your review process. You become the merge gate, and the gatekeeper of the codebase. In many ways, this mirrors the same challenge we've always had with team scaling: adding more developers doesn't automatically increase output if code review capacity doesn't scale with it.
+
+The second part of that is the context switching between the worktrees. You might think that the technical issue solved by worktrees is the real game changer here, but nonetheless, switching context between worktrees and tasks is an unsolved issue in itself. 
+
+## Conclusion
+
+Git worktrees have become an essential part of my development workflow, not because they're revolutionary, but because they solve a very specific modern problem: how to manage multiple concurrent development streams in the age of AI assistance.
+
+### My Main Use Cases
+
+**Long-running side tasks**: Perfect for those dependency updates, documentation improvements, or refactoring tasks that you want to chip away at over time without disrupting your main development flow.
+
+**Environment experimentation**: Need to test with a different Node version? Want to try a new dependency without breaking your current setup, which would require re-installing node_modules? Worktrees let you maintain completely isolated environments while keeping everything in the same repository.
+
+**AI agents for parallel local work**: This is where worktrees truly shine in 2025 and justify their existence and overhead. Each AI agent gets its own sandbox to work in, reducing the cognitive overhead of task switching and making it easier to review and integrate changes systematically.
+
+The beauty of git worktrees isn't in their technical complexity - they're actually quite simple. It's in their timing. They've been quietly waiting for a decade for the right use case to make them indispensable. With AI coding assistants becoming our collaborative partners rather than just tools, worktrees have found their moment.
+
+Sometimes the best features are the ones that have been there all along, just waiting for the right context to make them essential.
+
+While git worktrees won't make you deliver 10 times faster, they might make you 2-3 times faster, and that's a great boost we could have only dreamed about a few years back.
+
+## Resources
+
+- [Git Worktrees - Git Documentation](https://git-scm.com/docs/git-worktree)
+- [thePrimagen discovers Git Worktrees](https://www.youtube.com/watch?v=2uEqYw-N8uE)
+- [Frontend Masters - Git Course (needs signup)](https://frontendmasters.com/courses/everything-git/worktrees/)
