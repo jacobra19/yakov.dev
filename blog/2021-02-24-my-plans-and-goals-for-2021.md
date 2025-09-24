@@ -12,6 +12,8 @@ During this period, any time I came across something I didn't know and wanted to
 Thinking about where I see myself in a year and what knowledge I would like to possess, I refind the list while trying to be as efficient and realistic as possible at the same time.
 I hope to return to this post in a year and see that I have accomplished (hopefully most of it).
 
+<!-- truncate -->
+
 ## Learn
 
 ### Bundlers: webpack,rollup,parcal,snowpack.
