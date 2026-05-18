@@ -78,8 +78,7 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      // Replace with your project's social card // TODO: update this
-      //   image: 'img/docusaurus-social-card.jpg',
+      image: 'img/yakov-dev-social-card.jpg',
       navbar: {
         title: 'yakov.dev',
         logo: {
