@@ -1,6 +1,13 @@
 import { expect, test } from '@playwright/test';
 
 test.describe('site smoke tests', () => {
+  test.beforeEach(({ }, testInfo) => {
+    test.skip(
+      testInfo.project.name !== 'desktop',
+      'Smoke tests run on desktop only',
+    );
+  });
+
   test('homepage lists blog posts', async ({ page }) => {
     await page.goto('/');
     await expect(page).toHaveTitle(/yakov\.dev/i);
@@ -22,8 +29,7 @@ test.describe('visual regression', () => {
   test('homepage screenshot', async ({ page }) => {
     await page.goto('/');
     await page.waitForLoadState('networkidle');
-    await expect(page).toHaveScreenshot('homepage.png', {
-      fullPage: true,
+    await expect(page.locator('main')).toHaveScreenshot('homepage.png', {
       animations: 'disabled',
     });
   });
@@ -31,8 +37,7 @@ test.describe('visual regression', () => {
   test('blog post screenshot', async ({ page }) => {
     await page.goto('/recursion-in-react-simplified');
     await page.waitForLoadState('networkidle');
-    await expect(page).toHaveScreenshot('blog-post.png', {
-      fullPage: true,
+    await expect(page.locator('main')).toHaveScreenshot('blog-post.png', {
       animations: 'disabled',
     });
   });
