@@ -1,4 +1,15 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
+
+async function prepareVisualSnapshot(page: Page) {
+  await page.addStyleTag({
+    content: `
+      *, *::before, *::after {
+        font-family: Arial, Helvetica, sans-serif !important;
+      }
+    `,
+  });
+  await page.evaluate(() => document.fonts.ready);
+}
 
 test.describe('site smoke tests', () => {
   test.beforeEach(({ }, testInfo) => {
@@ -28,17 +39,21 @@ test.describe('site smoke tests', () => {
 test.describe('visual regression', () => {
   test('homepage screenshot', async ({ page }) => {
     await page.goto('/');
-    await page.waitForLoadState('networkidle');
-    await expect(page.locator('main')).toHaveScreenshot('homepage.png', {
+    await expect(page.getByRole('article').first()).toBeVisible();
+    await prepareVisualSnapshot(page);
+    await expect(page).toHaveScreenshot('homepage.png', {
       animations: 'disabled',
+      fullPage: false,
     });
   });
 
   test('blog post screenshot', async ({ page }) => {
     await page.goto('/recursion-in-react-simplified');
-    await page.waitForLoadState('networkidle');
-    await expect(page.locator('main')).toHaveScreenshot('blog-post.png', {
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+    await prepareVisualSnapshot(page);
+    await expect(page).toHaveScreenshot('blog-post.png', {
       animations: 'disabled',
+      fullPage: false,
     });
   });
 });

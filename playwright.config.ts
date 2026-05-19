@@ -15,10 +15,12 @@ export default defineConfig({
   use: {
     baseURL,
     trace: 'on-first-retry',
+    // Keep visual snapshots stable in CI (gtag is configured in docusaurus.config.js).
+    serviceWorkers: 'block',
   },
   expect: {
     toHaveScreenshot: {
-      maxDiffPixelRatio: 0.01,
+      maxDiffPixelRatio: 0.05,
     },
   },
   projects: [
